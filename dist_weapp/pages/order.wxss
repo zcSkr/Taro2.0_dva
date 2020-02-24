@@ -1,0 +1,8 @@
+.order_page_3wIug {
+  min-height: 100vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  background: #F7F7F7;
+}
+

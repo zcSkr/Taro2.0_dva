@@ -1,0 +1,8 @@
+.shop_page_10q9l {
+  min-height: 100vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  background: #f7f7f7;
+}
+
