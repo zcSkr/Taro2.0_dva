@@ -38,6 +38,7 @@ const config = {
     options: {
     }
   },
+  plugins: ['@tarojs/plugin-less', '@tarojs/plugin-sass', '@tarojs/plugin-terser'],
   mini: {
     webpackChain(chain, webpack) {
       // chain.plugin('analyzer')
@@ -65,16 +66,22 @@ const config = {
     imageUrlLoaderOption: {
       limit: 10240 // 大小限制，单位为 b
     },
+    cssLoaderOption: {
+      modules: {
+        auto: /[a-zA-Z]+\.less$/i,
+        mode: 'local',
+        localIdentName: '[name]_[local]_[hash:base64:5]',
+        getLocalIdent: (context, localIdentName, localName, options) => {
+          if (context.resourcePath.includes('customVariables.global.scss') || context.resourcePath.includes('app.global.less')) {
+            return localName;
+          }
+        },
+      }
+    },
     postcss: {
       autoprefixer: {
         enable: true,
-        config: {
-          browsers: [
-            'last 3 versions',
-            'Android >= 4.1',
-            'ios >= 8'
-          ]
-        }
+        config: {}
       },
       pxtransform: {
         enable: true,
@@ -87,13 +94,6 @@ const config = {
         config: {
           limit: 10240 // 设定转换尺寸上限
         }
-      },
-      cssModules: {
-        enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
-        config: {
-          namingPattern: 'global', // 转换模式，取值为 global/module
-          generateScopedName: '[name]_[local]_[hash:base64:5]'
-        }
       }
     }
   },
@@ -104,7 +104,19 @@ const config = {
       port: 8080
     },
     esnextModules: ['taro-ui'],
-    webpackChain(chain, webpack) { },
+    // webpackChain(chain, webpack) { },
+    cssLoaderOption: {
+      modules: {
+        auto: /[a-zA-Z]+\.less$/i,
+        mode: 'local',
+        localIdentName: '[name]_[local]_[hash:base64:5]',
+        getLocalIdent: (context, localIdentName, localName, options) => {
+          if (context.resourcePath.includes('customVariables.global.scss') || context.resourcePath.includes('app.global.less')) {
+            return localName;
+          }
+        },
+      }
+    },
     postcss: {
       autoprefixer: {
         enable: true,
@@ -114,13 +126,6 @@ const config = {
             'Android >= 4.1',
             'ios >= 8'
           ]
-        }
-      },
-      cssModules: {
-        enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
-        config: {
-          namingPattern: 'global', // 转换模式，取值为 global/module
-          generateScopedName: '[name]_[local]_[hash:base64:5]'
         }
       }
     }

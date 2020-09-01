@@ -7,20 +7,14 @@ export default {
     list: []
   },
   effects: {
-    *login({ payload, onSuccess, onComplete }, { select, call, put }) {
+    *login({ payload }, { select, call, put }) {
       const response = yield call(service_mine.login, {}, { ...payload });
-      if (response) {
-        if (onSuccess) yield onSuccess(response);
-      }
-      if (onComplete) yield onComplete();
+      return response
     },
-    *service({ payload, onSuccess, onComplete }, { select, call, put }) {
+    *service({ payload }, { select, call, put }) {
       const { service, params, data } = payload;
       const response = yield call(service_mine[service], params, data);
-      if (response) {
-        if (onSuccess) yield onSuccess(response);
-      }
-      if (onComplete) yield onComplete();
+      return response
     }
   },
   reducers: {

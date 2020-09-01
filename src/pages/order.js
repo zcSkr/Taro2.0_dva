@@ -12,7 +12,7 @@ import moment from 'moment';
   loading: loading.effects["home/query"],
   submiting: loading.effects["home/service"],
 }))
-class Order extends PureComponent {
+export default class Order extends PureComponent {
   config = {
     navigationBarTitleText: '订单',
     navigationBarTextStyle: "black",
@@ -42,4 +42,3 @@ class Order extends PureComponent {
     )
   }
 }
-export default Order

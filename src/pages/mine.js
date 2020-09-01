@@ -8,7 +8,7 @@ import { setToken, setUnionuser, getToken, getUnionuser, fileUrl } from '@/confi
 @connect(({ mine, loading }) => ({
   mine,
 }))
-class Mine extends PureComponent {
+export default class Mine extends PureComponent {
   config = {
     navigationBarTitleText: '我的',
     navigationBarTextStyle: "black",
@@ -32,4 +32,3 @@ class Mine extends PureComponent {
     )
   }
 }
-export default Mine

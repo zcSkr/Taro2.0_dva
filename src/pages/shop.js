@@ -11,7 +11,7 @@ import numeral from 'numeral';
   loading: loading.effects["home/query"],
   submiting: loading.effects["home/service"],
 }))
-class Shop extends PureComponent {
+export default class Shop extends PureComponent {
   config = {
     navigationBarTitleText: '积分商城',
     navigationBarTextStyle: "black",
@@ -31,4 +31,3 @@ class Shop extends PureComponent {
     )
   }
 }
-export default Shop

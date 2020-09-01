@@ -4,7 +4,7 @@ import Index from './pages/index';
 import dva from './utils/dva'
 import models from './model'
 import { Provider } from '@tarojs/redux'
-import "taro-ui/dist/style/index.scss";
+import './customVariables.global.scss'
 import './app.global.less'
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -24,6 +24,7 @@ const store = dvaApp.getStore();
 class App extends PureComponent {
 
   config = {
+    entryPagePath: 'pages/index',
     pages: [
       'pages/index',
       'pages/mine',
@@ -35,6 +36,7 @@ class App extends PureComponent {
         desc: "你的位置信息将用于小程序位置接口的效果展示"
       }
     },
+    // debug: true,
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
@@ -68,13 +70,24 @@ class App extends PureComponent {
         iconPath: "./assets/tabbar/icon_mine.png",
         selectedIconPath: "./assets/tabbar/icon_mine_selected.png"
       }]
-    }
+    },
+    lazyCodeLoading: "requiredComponents"
   }
 
+  store = store
   componentDidMount() {
-    console.log("程序启动");
+    Taro.onMemoryWarning((res) => {
+      Taro.showModal({
+        title: '警告',
+        content: '小程序内存不足，建议重启！',
+        showCancel: false,
+        confirmText: '知道了'
+      })
+    })
+    console.log('\x1b[35m%s', '程序启动');
     switch (process.env.TARO_ENV) {
-      case 'weapp': const updateManager = Taro.getUpdateManager();
+      case 'weapp':
+        const updateManager = Taro.getUpdateManager();
         updateManager.onUpdateReady(() => {
           Taro.showModal({
             title: "更新提示",
