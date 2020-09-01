@@ -1,3 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="{{styles.page}}">我的</view>
-</block>

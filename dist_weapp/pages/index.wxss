@@ -1,7 +1,0 @@
-.index_page_1IPmL {
-  min-height: 100vh;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  position: relative;
-}
-

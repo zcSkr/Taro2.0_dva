@@ -1,5 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="{{styles.page}}">
-        <view wx:key="item" wx:for="{{$anonymousCallee__16}}" wx:for-item="item" wx:for-index="_anonIdx2">首页{{item}}</view>
-    </view>
-</block>

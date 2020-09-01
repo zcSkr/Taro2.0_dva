@@ -1,3 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="{{styles.page}}">商城</view>
-</block>
